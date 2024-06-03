@@ -1,0 +1,39 @@
+import java.util.Scanner; //nested package/ hierarchical package
+import java.util.ArrayList;
+
+public class BusDemo {
+
+	public static void main(String[] args) {
+		
+	
+		ArrayList<Busbooking> buses = new ArrayList<Busbooking>();
+		ArrayList<booking> bookings = new ArrayList<booking>();
+		
+		buses.add(new Busbooking(1,true,2));
+		buses.add(new Busbooking(2,false,50));
+		buses.add(new Busbooking(3,true,48));
+		
+		int userOpt = 1;
+		Scanner scanner = new Scanner(System.in);
+		
+		for(Busbooking b:buses) {
+			b.displayBusInfo();
+		}
+		
+		while(userOpt==1) {
+			System.out.println("Enter 1 to Book and 2 to exit");
+			userOpt = scanner.nextInt();
+			if(userOpt == 1) {
+				booking booking1 = new booking();
+				if(booking1.isAvailable(bookings,buses)) {
+					bookings.add(booking1);
+					System.out.println("Your booking is confirmed");
+				}
+				else {
+					System.out.println("Sorry. Bus is full. Try another bus or date.");
+			}
+		}
+	}
+
+}
+}
